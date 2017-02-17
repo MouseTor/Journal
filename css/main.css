@@ -1,0 +1,279 @@
+*{
+    border: 0;
+    padding: 0;
+    margin: 0; 
+}
+form{
+    width: auto;
+    font-size: 15pt;
+    font-family: sans-serif;
+}
+form p{
+    padding: 5px;
+}
+
+.form-wraper{
+    width: 500px;
+    margin-top: 250px;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+}
+
+input{
+    outline: none;
+}
+input[disabled]{
+    padding: 10px;  
+    background-color: green;
+    border-radius: 10px;
+    color: white;
+    font-size: 15pt;
+    margin-top: 10px;
+    transition: .3s;
+}
+
+input[type=text], input[type=password]{
+    border: 1px solid black;
+    padding: 5px 0;
+    border-radius: 5px;
+    background-color: lightgray;
+}
+
+input[type=submit]{
+    padding: 10px 35px;
+    background-color: #31a357;
+    border-radius: 5px;
+    color: white;
+    font-size: 15pt;
+    margin-top: 10px;
+    transition: .3s;
+}
+input[type=submit]:hover{
+    transition: .3s;
+    cursor: pointer;
+    box-shadow: 0px 0px 20px 0px rgba(50, 50, 50, 0.7); 
+}
+
+table{
+    width: 100%;
+    padding: 5px; 
+    border-collapse: collapse;
+}
+
+.auth-error-log{
+    font-size: 12pt;
+    color: red;
+}
+
+.table-descr{
+    width: 500px;
+}
+
+td{
+    font-size: 13pt;
+    padding: 5px;
+    border-bottom: 1px solid silver;
+}
+
+.main-form-wraper{
+    position: fixed;
+    bottom: 0;
+    /*padding: 20px;*/
+    width: 100%;
+    background-color: rgba(255,255,255, 1);
+}
+
+.main-form-wraper p{
+    font-size: 12pt;
+}
+
+.main-form-wraper input{
+    margin-left: 5px;
+}
+
+.form-block{
+    width: auto;
+    float:left;
+}
+
+textarea{
+    margin-left: 5px;
+    border: 1px solid black;
+    padding: 5px 7px;
+    border-radius: 5px;
+    background-color: lightgray;
+    resize: none;
+}
+
+textarea[name=redactDescr]{
+    margin: 0;
+}
+
+input, textarea{
+    outline: none;
+}
+
+#hide-form-button{
+    cursor: pointer;
+}
+
+.main-error-log{
+    font-size: 12pt;
+    color: red;
+}
+
+.more-info-panel-wraper{
+    width: 100%;
+    height: 200vh;
+    background-color: rgba(0,0,0,0.7);
+    position: fixed;
+    top: 0;
+    display: none;
+}
+
+.more-info-panel{
+    width: 55%;
+    height: auto;
+    background-color: white;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 12%;
+    padding: 15px;
+    font-size: 15pt;
+    border-radius: 15px;
+}
+.more-info-panel p{
+    padding: 5px;
+}
+
+tr:hover{
+    cursor: pointer;
+    background-color: rgba(0,0,0, 0.1);
+}
+/*tr:first-child{
+    /*display: block;*/
+    position: fixed;
+    top: 0;
+    width: 100%;
+}*/
+
+h3{
+    text-align: center;
+    padding-top: 10px;
+}
+
+.shablon{
+    width: 50%;
+    float: left;
+    margin-top: 12px;
+}
+
+.client-shablon{
+    display: none;
+    width: 50%;
+    float: left;
+}
+
+.more-info-data{
+    width: 50%;
+    float: left;
+}
+
+.clear{
+    clear:both;
+}
+
+.status-2{
+    background-color: lightgreen;
+}
+.status-3{
+    background-color: orangered;
+}
+.more-info-panel-close-wraper{
+    cursor: pointer;
+    display: block;
+    position: relative;
+    border: 1px solid black;
+    border-radius: 5px;
+    float: right;
+    transition: .3s;
+}
+
+.more-info-panel-close-wraper:hover{
+    box-shadow: 0px 0px 20px 0px rgba(50, 50, 50, 0.7);
+    color: red;
+    transition: .3s;
+}
+
+.client-info-panel-control{
+    display: none;
+}
+select, input[type=date]{
+    width: 150px;
+    font-size: 12pt;
+    border: 1px solid black;
+    border-radius: 5px;
+    outline: none;
+    height: 32px;
+}
+
+.status-submit-error-log{
+    font-size: 12pt;
+    color: red;
+}
+
+.slideUpClientName{
+    position: absolute;
+    background-color: white;
+    font-size: 12pt;
+    margin-top: -128px;
+    margin-left: 5px;
+    border: 1px solid black;
+}
+
+.slideUpClientName p:hover{
+    cursor: pointer;
+}
+
+@media screen and (min-width: 320px) and (max-width: 370px){
+    *{
+        font-size: 10pt;
+    }
+    .form-wraper{
+        margin-top: 150px;
+    }
+     table{
+        padding: 0;
+        border-collapse: collapse;
+    }
+    td{
+        font-size: 9pt;
+        padding: 5px;
+    }
+    td:nth-child(5){
+        display: none;
+    }
+    td:nth-child(7){
+        display: none;
+    }
+    td:nth-child(6){
+        width: 65px;
+    }
+    p{
+        text-align: center;
+    }
+}
+
+@media screen and (min-width: 1024px){
+    p{
+        font-size: 20px;
+    }
+    h3{
+       font-size: 20px; 
+       text-align: center;
+    }
+    *{
+        font-size: 16px;
+    }
+}

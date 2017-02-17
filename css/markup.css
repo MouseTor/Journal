@@ -1,0 +1,299 @@
+* {
+  border: 0;
+  margin: 0;
+  padding: 0; }
+
+/*-dd - desctop device (1200+); -ld laptop device(1024+); -td - tablet device(768+); -md - mobile device(<768)*/
+/*Mobile devices*/
+/*320px*/
+@media screen and (min-width: 320px) {
+  .col-md-1 {
+    width: 32px; }
+
+  .col-md-2 {
+    width: 64px; }
+
+  .col-md-3 {
+    width: 96px; }
+
+  .col-md-4 {
+    width: 128px; }
+
+  .col-md-5 {
+    width: 160px; }
+
+  .col-md-6 {
+    width: 192px; }
+
+  .col-md-7 {
+    width: 224px; }
+
+  .col-md-8 {
+    width: 256px; }
+
+  .col-md-9 {
+    width: 288px; }
+
+  .col-md-10 {
+    width: 320px; }
+
+  .col-md-25 {
+    width: 25%; }
+
+  .col-md-50 {
+    width: 50%; }
+
+  .col-md-75 {
+    width: 75%; }
+
+  .col-md-100 {
+    width: 100%; }}
+/*375px*/
+@media screen and (min-width: 375px) {
+  .col-md-1 {
+    width: 37px; }
+
+  .col-md-2 {
+    width: 74px; }
+
+  .col-md-3 {
+    width: 111px; }
+
+  .col-md-4 {
+    width: 148px; }
+
+  .col-md-5 {
+    width: 185px; }
+
+  .col-md-6 {
+    width: 222px; }
+
+  .col-md-7 {
+    width: 259px; }
+
+  .col-md-8 {
+    width: 296px; }
+
+  .col-md-9 {
+    width: 333px; }
+
+  .col-md-10 {
+    width: 370px; }
+
+  .col-md-25 {
+    width: 25%; }
+
+  .col-md-50 {
+    width: 50%; }
+
+  .col-md-75 {
+    width: 75%; }
+
+  .col-md-100 {
+    width: 100%; }
+     }
+/*425px*/
+@media screen and (min-width: 425px) {
+  .col-md-1 {
+    width: 42px; }
+
+  .col-md-2 {
+    width: 84px; }
+
+  .col-md-3 {
+    width: 126px; }
+
+  .col-md-4 {
+    width: 168px; }
+
+  .col-md-5 {
+    width: 210px; }
+
+  .col-md-6 {
+    width: 252px; }
+
+  .col-md-7 {
+    width: 294px; }
+
+  .col-md-8 {
+    width: 336px; }
+
+  .col-md-9 {
+    width: 378px; }
+
+  .col-md-10 {
+    width: 420px; }
+
+  .col-md-25 {
+    width: 25%; }
+
+  .col-md-50 {
+    width: 50%; }
+
+  .col-md-75 {
+    width: 75%; }
+
+  .col-md-100 {
+    width: 100%; } }
+/*Tablet devices*/
+@media screen and (min-width: 768px) {
+  .col-td-1 {
+    width: 64px; }
+
+  .col-td-2 {
+    width: 128px; }
+
+  .col-td-3 {
+    width: 192px; }
+
+  .col-td-4 {
+    width: 256px; }
+
+  .col-td-5 {
+    width: 320px; }
+
+  .col-td-6 {
+    width: 384px; }
+
+  .col-td-7 {
+    width: 448px; }
+
+  .col-td-8 {
+    width: 512px; }
+
+  .col-td-9 {
+    width: 576px; }
+
+  .col-td-10 {
+    width: 640px; }
+
+  .col-td-11 {
+    width: 704px; }
+
+  .col-td-12 {
+    width: 768px; }
+
+  .col-td-25 {
+    width: 25%; }
+
+  .col-td-50 {
+    width: 50%; }
+
+  .col-td-75 {
+    width: 75%; }
+
+  .col-td-100 {
+    width: 100%; } }
+/*Tablet devices*/
+/*Laptop devices*/
+@media screen and (min-width: 1024px) {
+  .col-ld-1 {
+    width: 80px; }
+
+  .col-ld-2 {
+    width: 160px; }
+
+  .col-ld-3 {
+    width: 240px; }
+
+  .col-ld-4 {
+    width: 320px; }
+
+  .col-ld-5 {
+    width: 400px; }
+
+  .col-ld-6 {
+    width: 480px; }
+
+  .col-ld-7 {
+    width: 560px; }
+
+  .col-ld-8 {
+    width: 640px; }
+
+  .col-ld-9 {
+    width: 720px; }
+
+  .col-ld-10 {
+    width: 800px; }
+
+  .col-ld-11 {
+    width: 880px; }
+
+  .col-ld-12 {
+    width: 960px; }
+
+  .col-ld-25 {
+    width: 25%; }
+
+  .col-ld-50 {
+    width: 50%; }
+
+  .col-ld-75 {
+    width: 75%; }
+
+  .col-ld-100 {
+    width: 100%; } }
+/*Laptop devices END*/
+/*Desctop devices*/
+@media screen and (min-width: 1200px) {
+  .col-dd-1 {
+    width: 100px; }
+
+  .col-dd-2 {
+    width: 200px; }
+
+  .col-dd-3 {
+    width: 300px; }
+
+  .col-dd-4 {
+    width: 400px; }
+
+  .col-dd-5 {
+    width: 500px; }
+
+  .col-dd-6 {
+    width: 600px; }
+
+  .col-dd-7 {
+    width: 700px; }
+
+  .col-dd-8 {
+    width: 800px; }
+
+  .col-dd-9 {
+    width: 900px; }
+
+  .col-dd-10 {
+    width: 1000px; }
+
+  .col-dd-11 {
+    width: 1100px; }
+
+  .col-dd-12 {
+    width: 1200px; }
+
+  .col-dd-25 {
+    width: 25%; }
+
+  .col-dd-50 {
+    width: 50%; }
+
+  .col-dd-75 {
+    width: 75%; }
+
+  .col-dd-100 {
+    width: 100%; } }
+/*Desctop devices END*/
+/**/
+.left {
+  float: left; }
+
+.right {
+  float: right; }
+
+ .content {
+    margin-left: auto;
+    margin-right: auto; }
+
+/**/
