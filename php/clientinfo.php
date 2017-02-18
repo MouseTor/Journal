@@ -2,7 +2,7 @@
 /*Отправка подробных данных клиента*/
     header('Content-type: text/html; charset=utf-8');
     require "dbdata.php";
-    $appid = trim($_POST['appid']);
+    $appid = addslashes(trim($_POST['appid']));
     @ $dbconnect = new mysqli($dbData->host, $dbData->login, $dbData->password, $dbData->database);
     if(mysqli_connect_errno()){
         echo "<p class='no-connect-db'>Не удалось подлючиться к базе данных. Повторите попытку позже.</p>";

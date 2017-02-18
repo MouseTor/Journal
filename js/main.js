@@ -7,11 +7,11 @@ function toggleForm(){
 
     if(form.getAttribute('data-status') == 'show'){
         form.style.height = '25px';
-        d.getElementById('hide-form-button').innerHTML = '▲';
+        d.getElementById('hide-form-button').innerHTML = '▲' + ' ' + d.getElementById('hide-form-button').getAttribute('data-login-session');
         form.setAttribute('data-status', 'hide');
     }else{
         form.style.height = 'auto';
-        d.getElementById('hide-form-button').innerHTML = '▼';
+        d.getElementById('hide-form-button').innerHTML = '▼' + ' ' + d.getElementById('hide-form-button').getAttribute('data-login-session');
         form.setAttribute('data-status', 'show');
     }
 }
@@ -70,7 +70,6 @@ function insertApp(e){
             insertAJAX.send(data);
             d.getElementById('submit-data-button').setAttribute('data-load-script', 'true');
             d.getElementById('submit-data-button').value = 'Отправка...';
-            d.getElementById('submit-data-button').style.backgroundColor = 'green'
         }
     }
 }
@@ -79,7 +78,7 @@ function rowListener(){
     var td = this.getElementsByTagName('td')[0].innerHTML;
     var moreIPW = d.getElementsByClassName('more-info-panel-wraper')[0];
     var moreIP = d.getElementsByClassName('more-info-panel')[0];
-    moreIPW.style.display = 'block'; 
+    moreIPW.style.display = 'block';
     document.querySelectorAll('h3')[0].innerHTML = "Заявка № " + td;
     d.getElementsByName('appidSubmit')[0].value = td;
 
@@ -96,21 +95,21 @@ function rowListener(){
             if(moreIAJAX.responseText){
                 var data = JSON.parse(moreIAJAX.responseText);
                 var status;
-                if(data[29] == 1){
+                if(data[0] == 1){
                     status = "Не выполнена";
                     d.getElementsByName('more-info-status')[0].style.display= "inline";
-                }else if(data[29] == 2){
+                }else if(data[0] == 2){
                     status = "Выполнена";
                      d.getElementsByName('more-info-status')[0].style.display= "none";
                 }else{
                     status = "Отменена";
                     d.getElementsByName('more-info-status')[0].style.display= "none";
                 }
-                var answer = "<p class='redactName'>" + data[2] + " " + data[1] + " " + data[3] + "</p><p> 8 " + data[4] + "</p><p>" + data[5] + "</p><p class='redactAddress'>" + data[6] + "</p><p class='redactDescr'>" + data[28] + "</p><p class='redactCost'>" + data[26] + "</p><p>" + data[30] + "</p><p>" + data[17] + " " + data[16] + " " + data[18] + "</p><p class='status-val'>" + status + "</p>";
-                if(data[29] == 2 ){
-                    answer += "<p>Дата выполнения: " + data[27] + "</p><p>Выполнил заявку: " + data[9] + " " + data[8] + "</p>"; 
-                }else if(data[29] == 3){
-                    answer += "<p>Дата закрытия: " + data[27] + "</p>";
+                var answer = "<p class='redactName'>" + data[6] + " " + data[5] + " " + data[7] + "</p><p> 8 " + data[8] + "</p><p>" + data[9] + "</p><p class='redactAddress'>" + data[10] + "</p><p class='redactDescr'>" + data[1] + "</p><p class='redactCost'>" + data[2] + "</p><p>" + data[3] + "</p><p>" + data[12] + " " + data[11] + " " + data[13] + "</p><p class='status-val'>" + status + "</p>";
+                if(data[0] == 2 ){
+                    answer += "<p>Дата выполнения: " + data[4] + "</p><p>Выполнил заявку: " + data[15] + " " + data[14] + "</p>"; 
+                }else if(data[0] == 3){
+                    answer += "<p>Дата закрытия: " + data[4] + "</p>";
                 }
                 d.getElementsByClassName('more-info-data')[0].innerHTML = answer;
                 d.getElementsByClassName('shablonName')[0].style = "height:" + (d.getElementsByClassName('redactName')[0].offsetHeight - 10) + "px;";
