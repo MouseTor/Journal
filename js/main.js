@@ -33,7 +33,6 @@ function insertApp(e){
         var clientAddress = d.getElementsByName('clientAddress')[0].value;
         var clientPhoneNumber = d.getElementsByName('clientPhoneNumber')[0].value;
         var appCost = d.getElementsByName('appCost')[0].value;
-        var appDescr = d.getElementsByName('appDescr')[0].value;
         var oldClientId = d.getElementsByName('oldClientId')[0].value;
 
 
@@ -113,9 +112,9 @@ function rowListener(){
                 }
                 d.getElementsByClassName('more-info-data')[0].innerHTML = answer;
                 moreIPW.style.display = 'block';
-                d.getElementsByClassName('shablonName')[0].style = "height:" + (d.getElementsByClassName('redactName')[0].offsetHeight - 10) + "px;";
-                d.getElementsByClassName('shablonAddress')[0].style = "height:" + (d.getElementsByClassName('redactAddress')[0].offsetHeight - 10) + "px;";
-                d.getElementsByClassName('shablonDescr')[0].style = "height:" + (d.getElementsByClassName('redactDescr')[0].offsetHeight - 10) + "px;";  
+                d.getElementsByClassName('shablonName')[0].style = "height:" + (d.getElementsByClassName('redactName')[0].offsetHeight) + "px;";
+                d.getElementsByClassName('shablonAddress')[0].style = "height:" + (d.getElementsByClassName('redactAddress')[0].offsetHeight) + "px;";
+                d.getElementsByClassName('shablonDescr')[0].style = "height:" + (d.getElementsByClassName('redactDescr')[0].offsetHeight) + "px;";  
             }
         }
     }

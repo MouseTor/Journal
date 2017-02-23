@@ -58,16 +58,21 @@
             $insert_form = "
             <div class='main-form-wraper' data-status='show'>
                 <form>
-                    <div class='form-block'>
-                        <p id='hide-form-button' data-login-session='".$_SESSION['sessionlogin']."'>▼ </p>
+                    <div class='form-content'>
+                        <div class='form-block'>
+                            <p id='hide-form-button' data-login-session='".$_SESSION['sessionlogin']."'>▼ </p>
+                        </div>
+                        <div class='form-block'>
+                            <p><input type='submit' value='Добавить запись' id='add-new-app'></p>
+                        </div>
+                        <div class='form-block'>
+                            <p><input type='submit' value='Только невыполненные' name='appfilter-butt'><input type='submit' value='Обновить' name='reload'></p>
+                        </div>
+                        <div class='form-block'> 
+                            <p><input type='submit' value='Выйти из системы' id='end-programm'></p>                   
+                        </div>
                     </div>
-                    <div class='form-block'>
-                        <p><input type='submit' value='Только невыполненные' name='appfilter-butt'></p>
-                    </div>
-                    <div class='form-block'>
-                        <p><a href='../about.html'>О программе</a></p> 
-                        <p><input type='submit' value='Выйти из системы' id='end-programm'></p>                   
-                    </div>
+                    <a href='../about.html'>О программе</a>
                 </form>
             </div>";
             echo $insert_form;
@@ -83,7 +88,7 @@
     
         <div class="more-info-panel col-dd-50 col-md-9">
 
-            <div class="more-info-panel-close-wraper"><p class="more-info-panel-close">Закрыть</p></div>
+            <div class="more-info-panel-close-wraper"><p class="panel-close">Закрыть</p></div>
         
             <h3>Заявка №</h3>
             
@@ -125,28 +130,42 @@
         </div>
     
     </div>
-    <div class="new-app-panel-wraper">
-        <div class="new-app-panel">
+    <div class="new-app-panel-wraper col-md-100">
+        <div class="new-app-panel col-dd-50 col-md-9">
+        <div class="more-info-panel-close-wraper"><p class="panel-close">Закрыть</p></div>
+            <p class='new-app-numb'>1</p>
             <p>ФИО</p>
             <input type='text' name='clientSurName' tabindex='1' maxlength = '20'>
             <input type='text' name='clientName' tabindex='2' maxlength ='20'>
             <input type='text' name='clientLastName' tabindex='3' maxlength = '20'>
             <p>Номер телефона</p>
             <b>+7</b><input type='text' name='clientPhoneNumber' tabindex='4' maxlength = 10>
-            <p><input type='submit' value='Записать' name='insertApp' tabindex='9' id='submit-data-button' data-load-script='false'><input type='submit' value='Обновить' name='reload'></p>
+            
             <p class='main-error-log'></p>
             <input type='hidden' name='oldClientId'>
             <div class='slideUpClientName'></div>
-            <p><b>Добавление записи №</b></p>
+            
             <p>Населенный пункт</p>
             <input type='text' name='clientCity' tabindex='5' maxlength = '20'>
             <p>Стоимость</p>
             <input type='text' name='appCost' tabindex='7' maxlength = '6'>
-            <p class='new-app-numb'>1</p>
+            
             <p>Адрес</p>
             <textarea name='clientAddress' cols='30' rows='4' tabindex='6' maxlength = '124'></textarea>
-            <p>Описание</p>
-            <textarea name='appDescr' cols='27' rows='4' tabindex='8' maxlength = '124'></textarea>
+            <p>Выберите тип заявки</p>
+            <p data-name="app-type">
+                <select name="new-app-type">
+                    <option value="0">Выберите тип</option>
+                    <option value="call-master-system-type">Вызов мастера</option>
+                    <option value="install-work-system-type">Монтажные работы</option>
+                    <option value="service-center-system-type">Сервисное обслуживание</option>
+                    <option value="replacement-system-type">Замена оборудования</option>
+                </select>
+            </p>
+            <div class="description">
+
+            </div>
+            <p><input type='submit' value='Записать' name='insertApp' tabindex='9' id='submit-data-button' data-load-script='false'></p>
         </div>
     </div>
 </body>

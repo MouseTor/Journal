@@ -143,7 +143,7 @@ input, textarea{
     font-size: 15pt;
     border-radius: 15px;
 }
-.more-info-panel p{
+.panel-close{
     padding: 5px;
 }
 
@@ -227,13 +227,47 @@ select, input[type=date]{
     position: absolute;
     background-color: white;
     font-size: 12pt;
-    margin-top: -128px;
-    margin-left: 5px;
+    margin-top: -54px;
+    margin-left: 0px;
     border: 1px solid black;
 }
 
 .slideUpClientName p:hover{
     cursor: pointer;
+}
+
+.new-app-panel-wraper{
+    width: 100%;
+    height: 200vh;
+    background-color: rgba(0,0,0,0.7);
+    position: fixed;
+    top: 0;
+    display: none; 
+}
+.new-app-panel{
+    width: 55%;
+    height: auto;
+    background-color: white;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    padding: 15px;
+    font-size: 15pt;
+    border-radius: 15px;
+}
+.new-app-numb{
+    text-align: center;
+}
+
+.form-content{
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.form-content:after{
+    content: '';
+    display: block;
+    clear: both;
 }
 
 @media screen and (min-width: 320px) and (max-width: 370px){
