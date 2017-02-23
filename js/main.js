@@ -70,6 +70,7 @@ function insertApp(e){
             insertAJAX.send(data);
             d.getElementById('submit-data-button').setAttribute('data-load-script', 'true');
             d.getElementById('submit-data-button').value = 'Отправка...';
+            d.getElementById('submit-data-button').style.backgroundColor = 'green';
         }
     }
 }
@@ -78,7 +79,6 @@ function rowListener(){
     var td = this.getElementsByTagName('td')[0].innerHTML;
     var moreIPW = d.getElementsByClassName('more-info-panel-wraper')[0];
     var moreIP = d.getElementsByClassName('more-info-panel')[0];
-    moreIPW.style.display = 'block';
     document.querySelectorAll('h3')[0].innerHTML = "Заявка № " + td;
     d.getElementsByName('appidSubmit')[0].value = td;
 
@@ -112,6 +112,7 @@ function rowListener(){
                     answer += "<p>Дата закрытия: " + data[4] + "</p>";
                 }
                 d.getElementsByClassName('more-info-data')[0].innerHTML = answer;
+                moreIPW.style.display = 'block';
                 d.getElementsByClassName('shablonName')[0].style = "height:" + (d.getElementsByClassName('redactName')[0].offsetHeight - 10) + "px;";
                 d.getElementsByClassName('shablonAddress')[0].style = "height:" + (d.getElementsByClassName('redactAddress')[0].offsetHeight - 10) + "px;";
                 d.getElementsByClassName('shablonDescr')[0].style = "height:" + (d.getElementsByClassName('redactDescr')[0].offsetHeight - 10) + "px;";  
