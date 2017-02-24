@@ -13,7 +13,7 @@
     if(mysqli_connect_errno()){
         echo "Ошибка подключения к базе данных";
         exit;}
-    $query = 'select name, surname, lastname, login, workermail from workers';
+    $query = 'select workerid, name, surname, lastname, login, workermail from workers';
     $result = $dbconnect->query($query);
     if($result){
         $numrow = $result->num_rows;

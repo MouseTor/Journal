@@ -443,6 +443,7 @@ function winrFunction(e){
             if(d.getElementsByName('winr-input')[0].value == 'gwork'){
                 d.getElementsByClassName('worker-window-wraper')[0].style.display = 'block';
                 d.getElementsByClassName('more-info-panel-close')[1].addEventListener('click', closeWorkerPanel);
+                d.getElementsByName('worker-data-redact')[0].addEventListener('click', setWorkerData);
                 d.addEventListener('keyup', closeWorkerPanelClick);
                 var workerTableAJAX = new getXHR();
                 var url = '../php/workertable.php'
@@ -455,12 +456,17 @@ function winrFunction(e){
                             var request = JSON.parse(response);
                             if(request == 'error'){
                                 alert('У Вас недостаточно прав для выполнения этой операции. Обратитесь к администратору за дополнительной информацией.');
+                                 closeWorkerPanel();
                             }else{
                                 var tableinner = '';
                                 for(i = 0; i < request.length; i++){
-                                    tableinner += '<tr><td>' + request[i]['surname'] + '</td><td>' + request[i]['name'] + '</td><td>' + request[i]['lastname'] + '</td><td>' + request[i]['workermail'] + '</td><td>' + request[i]['login'] + '</td></tr>';   
+                                    tableinner += '<tr data-trid="' + request[i]['workerid'] +'"><td data-tdname="surname">' + request[i]['surname'] + '</td><td data-tdname="name">' + request[i]['name'] + '</td><td data-tdname="lastname">' + request[i]['lastname'] + '</td><td data-tdname="workermail">' + request[i]['workermail'] + '</td><td data-tdname="login">' + request[i]['login'] + '</td></tr>';   
                                 }
-                                table.innerHTML += tableinner; 
+                                table.innerHTML += tableinner;
+                                var tr = table.getElementsByTagName('tr');
+                                for(i = 1; i < tr.length; i++){
+                                    tr[i].addEventListener('click', redactworker);
+                                }
                             }
                         }
                     }
@@ -477,14 +483,55 @@ function winrFunction(e){
 
 function closeWorkerPanelClick(e){
     if(e.keyCode == 27){
-        d.getElementsByClassName('worker-window-table')[0].innerHTML = '';
+        d.getElementsByClassName('worker-window-table')[0].innerHTML = '<tr><td>Фамилия</td><td>Имя</td><td>Отчество</td><td>E-mail адрес</td><td>Имя пользователя</td></tr>';
         d.getElementsByClassName('worker-window-wraper')[0].style.display = 'none';
         d.removeEventListener('keyup', closeWorkerPanelClick);
+        d.getElementsByName('worker-data-redact')[0].removeEventListener('click', setWorkerData);
     }
 }
 
 function closeWorkerPanel(){
-    d.getElementsByClassName('worker-window-table')[0].innerHTML = '';
+    d.getElementsByClassName('worker-window-table')[0].innerHTML = '<tr><td>Фамилия</td><td>Имя</td><td>Отчество</td><td>E-mail адрес</td><td>Имя пользователя</td></tr>';
     d.getElementsByClassName('worker-window-wraper')[0].style.display = 'none';
     d.getElementsByClassName('more-info-panel-close')[1].removeEventListener('click', closeWorkerPanel);
+    d.getElementsByName('worker-data-redact')[0].removeEventListener('click', setWorkerData);
+}
+
+function redactworker(){
+    var td = this.getElementsByTagName('td');
+    for(i = 0; i < td.length; i++){
+        td[i].innerHTML = '<input type="text" name="' + td[i].getAttribute('data-tdname') + '" value="' + td[i].innerHTML + '">';
+    }
+    this.removeEventListener('click', redactworker);
+}
+
+function setWorkerData(e){
+    e.preventDefault();
+    var worker = {
+        name: d.getElementsByName('name')[0].value,
+        surname: d.getElementsByName('surname')[0].value,
+        lastname: d.getElementsByName('lastname')[0].value,
+        login: d.getElementsByName('login')[0].value,
+        workermail: d.getElementsByName('workermail')[0].value,
+        id: d.getElementsByName('name')[0].parentNode.parentNode.getAttribute('data-trid')
+    }
+    // for(key in worker){
+    //     if(worker[key] === 'undefined'){
+    //         worker[key] = '';
+    //     }
+    // }
+    var newDataAJAX = getXHR();
+    var url = '../php/redactWorkerData.php';
+    var data = 'name=' + worker.name + '&surname=' + worker.surname + '&lastname=' + worker.lastname + '&workermail=' + worker.workermail + '&login=' + worker.login + '&id=' + worker.id; 
+    newDataAJAX.open('POST', url, true);
+    newDataAJAX.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    newDataAJAX.onreadystatechange = function(){
+        if(this.readyState == 4 && this.status == 200){
+            var response = this.responseText;
+            if(response == 1){
+                location.reload();
+            }
+        }
+    }
+    newDataAJAX.send(data);
 }

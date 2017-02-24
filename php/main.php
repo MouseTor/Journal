@@ -170,7 +170,7 @@
                         <td>Имя пользователя</td>
                     </tr>
                 </table>
-            
+                <input type="submit" name="worker-data-redact" value="Отправить">
             </div>
         
         </div>

@@ -277,6 +277,10 @@ select, input[type=date]{
 .worker-window-table-wraper p{
     padding: 5px;
 }
+
+.worker-window-table-wraper input[type=text]{
+    width: 125px;
+}
 @media screen and (min-width: 320px) and (max-width: 370px){
     *{
         font-size: 10pt;
