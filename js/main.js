@@ -25,19 +25,23 @@ function exit(e){
 function insertApp(e){
     e.preventDefault();
     if(d.getElementById("submit-data-button").getAttribute('data-load-script') == 'false'){
-        
-        var clientName = d.getElementsByName('clientName')[0].value;
-        var clientSurName = d.getElementsByName('clientSurName')[0].value;
-        var clientLastName = d.getElementsByName('clientLastName')[0].value;
-        var clientCity = d.getElementsByName('clientCity')[0].value;
-        var clientAddress = d.getElementsByName('clientAddress')[0].value;
-        var clientPhoneNumber = d.getElementsByName('clientPhoneNumber')[0].value;
-        var appCost = d.getElementsByName('appCost')[0].value;
-        var appDescr = d.getElementsByName('appDescr')[0].value;
+
+        var client = {
+            name: d.getElementsByName('clientName')[0].value,
+            surname: d.getElementsByName('clientSurName')[0].value,
+            lastname: d.getElementsByName('clientLastName')[0].value,
+            city: d.getElementsByName('clientCity')[0].value,
+            address: d.getElementsByName('clientAddress')[0].value,
+            phonenumber: d.getElementsByName('clientPhoneNumber')[0].value,
+        };
+        var newapp = {
+            cost: d.getElementsByName('appCost')[0].value, 
+            description: d.getElementsByName('appDescr')[0].value,
+        }
         var oldClientId = d.getElementsByName('oldClientId')[0].value;
 
 
-        if(!clientName || !clientSurName || !clientLastName || !clientCity || !clientAddress || !clientPhoneNumber || !appCost || !appDescr){
+        if(!client.name || !client.surname || !client.lastname || !client.city || !client.address || !client.phonenumber || !newapp.cost || !newapp.description){
             d.getElementsByClassName('main-error-log')[0].innerHTML = 'Все поля являются обязательными к заполнению!';
         }else{
             d.getElementsByClassName('main-error-log')[0].innerHTML = '';
@@ -58,14 +62,14 @@ function insertApp(e){
                 }
             }
             var data = 
-            "clientName=" + clientName
-            + "&clientSurName=" + clientSurName 
-            + "&clientLastName=" + clientLastName 
-            + "&clientPhoneNumber=" + clientPhoneNumber
-            + "&clientCity=" + clientCity 
-            + "&clientAddress=" + clientAddress 
-            + "&appCost=" + appCost 
-            + "&appDescr=" + appDescr
+            "clientName=" + client.name
+            + "&clientSurName=" + client.surname 
+            + "&clientLastName=" + client.lastname 
+            + "&clientPhoneNumber=" + client.phonenumber
+            + "&clientCity=" + client.city 
+            + "&clientAddress=" + client.address 
+            + "&appCost=" + newapp.cost 
+            + "&appDescr=" + newapp.description
             + "&oldClientId=" + oldClientId;
             insertAJAX.send(data);
             d.getElementById('submit-data-button').setAttribute('data-load-script', 'true');
@@ -423,4 +427,64 @@ function outputWorkStatus(){
     }
     getworkstatus.send();
     setTimeout(outputWorkStatus, 10000);
+}
+
+function perform(e){
+    e.preventDefault();
+    d.getElementsByClassName('winr-wraper')[0].style.display = 'block';
+    d.getElementsByName('winr-input')[0].focus();
+    d.getElementsByName('winr-input')[0].addEventListener('keydown', winrFunction);
+}
+
+function winrFunction(e){
+    var table = d.getElementsByClassName('worker-window-table')[0];
+    if(e.keyCode == 13){
+            d.getElementsByName('winr-input')[0].removeEventListener('keydown', winrFunction);
+            if(d.getElementsByName('winr-input')[0].value == 'gwork'){
+                d.getElementsByClassName('worker-window-wraper')[0].style.display = 'block';
+                d.getElementsByClassName('more-info-panel-close')[1].addEventListener('click', closeWorkerPanel);
+                d.addEventListener('keyup', closeWorkerPanelClick);
+                var workerTableAJAX = new getXHR();
+                var url = '../php/workertable.php'
+                workerTableAJAX.open('POST', url, true);
+                workerTableAJAX.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+                workerTableAJAX.onreadystatechange = function(){
+                    if(this.readyState == 4 && this.status == 200){
+                        var response = workerTableAJAX.responseText;
+                        if(response){
+                            var request = JSON.parse(response);
+                            if(request == 'error'){
+                                alert('У Вас недостаточно прав для выполнения этой операции. Обратитесь к администратору за дополнительной информацией.');
+                            }else{
+                                var tableinner = '';
+                                for(i = 0; i < request.length; i++){
+                                    tableinner += '<tr><td>' + request[i]['surname'] + '</td><td>' + request[i]['name'] + '</td><td>' + request[i]['lastname'] + '</td><td>' + request[i]['workermail'] + '</td><td>' + request[i]['login'] + '</td></tr>';   
+                                }
+                                table.innerHTML += tableinner; 
+                            }
+                        }
+                    }
+                }
+                workerTableAJAX.send();
+
+            }else{
+                alert('Неизвестная команда: ' + d.getElementsByName('winr-input')[0].value);
+            }
+            d.getElementsByName('winr-input')[0].value = '';
+            d.getElementsByClassName('winr-wraper')[0].style.display = 'none'; 
+        }
+}
+
+function closeWorkerPanelClick(e){
+    if(e.keyCode == 27){
+        d.getElementsByClassName('worker-window-table')[0].innerHTML = '';
+        d.getElementsByClassName('worker-window-wraper')[0].style.display = 'none';
+        d.removeEventListener('keyup', closeWorkerPanelClick);
+    }
+}
+
+function closeWorkerPanel(){
+    d.getElementsByClassName('worker-window-table')[0].innerHTML = '';
+    d.getElementsByClassName('worker-window-wraper')[0].style.display = 'none';
+    d.getElementsByClassName('more-info-panel-close')[1].removeEventListener('click', closeWorkerPanel);
 }

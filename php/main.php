@@ -85,7 +85,7 @@
                         <p><input type='submit' value='Только невыполненные' name='appfilter-butt'></p>
                     </div>
                     <div class='form-block'>
-                        <p><a href='../about.html'>О программе</a></p>
+                        <p><a href='../about.html'>О программе</a>&nbsp<a href='#' id='winr'>Выполнить</a></p>
                         <p>Описание</p>
                         <textarea name='appDescr' cols='27' rows='4' tabindex='8' maxlength = '124'></textarea> 
                         <p><input type='submit' value='Выйти из системы' id='end-programm'></p>                   
@@ -95,8 +95,8 @@
             echo $insert_form;
         }else{
             $insert_form = "<div class='form-block'>
-                        <p><input type='submit' value='Выйти из системы' id='end-programm'></p>                   
-                    </div>";
+                        <p><input type='submit' value='Выйти из системы' id='end-programm'></p>
+                        </div>";
             echo $insert_form;
         }
 
@@ -144,6 +144,35 @@
                 <input type="submit" value="Редактирование" name="client-info-redact">
             
             </div>
+        </div>
+    
+    </div>
+    <div class="winr-wraper">
+    
+        <input type="text" name="winr-input" />
+
+    </div>
+    <div class="worker-window-wraper">
+    
+        <div class="worker-window">
+
+            <div class="worker-window-table-wraper">
+                <div class="more-info-panel-close-wraper"><p class="more-info-panel-close">Закрыть</p></div>
+        
+                <h3>Администрирование учетных записей монтажников</h3>
+            
+                <table class="worker-window-table">
+                    <tr>
+                        <td>Фамилия</td>
+                        <td>Имя</td>
+                        <td>Отчество</td>
+                        <td>E-mail адрес</td>
+                        <td>Имя пользователя</td>
+                    </tr>
+                </table>
+            
+            </div>
+        
         </div>
     
     </div>

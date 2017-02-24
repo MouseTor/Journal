@@ -30,6 +30,7 @@ function addind(){
             d.getElementsByName('reload')[0].addEventListener('click', function(e){e.preventDefault(); location.reload();})
         d.getElementsByName('appDescr')[0].addEventListener('keyup', slashesRegExp);
         d.getElementsByName('appfilter-butt')[0].addEventListener('click', function(e){e.preventDefault(); document.location.href = "http://webbranch.ru/journal/php/main.php?appfilter=1";});
+        d.getElementById('winr').addEventListener('click', perform);
         // d.getElementsByName('search-filter')[0].addEventListener('click', search);
         }
         
