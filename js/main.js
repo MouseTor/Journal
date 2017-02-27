@@ -431,7 +431,11 @@ function outputWorkStatus(){
 
 function perform(e){
     e.preventDefault();
-    d.getElementsByClassName('winr-wraper')[0].style.display = 'block';
+    if(d.getElementsByClassName('winr-wraper')[0].style.display == 'block'){
+        d.getElementsByClassName('winr-wraper')[0].style.display = 'none';
+    }else{
+        d.getElementsByClassName('winr-wraper')[0].style.display = 'block';
+    }
 }
 
 function winrFunction(tab){
@@ -451,13 +455,14 @@ function winrFunction(tab){
                     var response = workerTableAJAX.responseText;
                     if(response){
                         var request = JSON.parse(response);
+                        console.log(request);
                         if(request == 'error'){
                             alert('У Вас недостаточно прав для выполнения этой операции. Обратитесь к администратору за дополнительной информацией.');
                                 closeWorkerPanel();
                         }else{
                             var tableinner = '';
                             for(i = 0; i < request.length; i++){
-                                tableinner += '<tr data-trid="' + request[i]['workerid'] +'"><td data-tdname="surname">' + request[i]['surname'] + '</td><td data-tdname="name">' + request[i]['name'] + '</td><td data-tdname="lastname">' + request[i]['lastname'] + '</td><td data-tdname="workermail">' + request[i]['workermail'] + '</td><td data-tdname="login">' + request[i]['login'] + '</td></tr>';   
+                                tableinner += '<tr data-trid="' + (request[i]['workerid'] || request[i]['cashierid']) +'" data-usertype="'+ request[i]['usertype'] +'"><td data-tdname="surname">' + request[i]['surname'] + '</td><td data-tdname="name">' + request[i]['name'] + '</td><td data-tdname="lastname">' + request[i]['lastname'] + '</td><td data-tdname="workermail">' + (request[i]['workermail'] || request[i]['usertype']) + '</td><td data-tdname="login">' + request[i]['login'] + '</td></tr>';   
                             }
                             table.innerHTML += tableinner;
                             var tr = table.getElementsByTagName('tr');
@@ -528,7 +533,7 @@ function setWorkerData(e){
     // }
     var newDataAJAX = getXHR();
     var url = '../php/redactWorkerData.php';
-    var data = 'name=' + worker.name + '&surname=' + worker.surname + '&lastname=' + worker.lastname + '&workermail=' + worker.workermail + '&login=' + worker.login + '&id=' + worker.id; 
+    var data = 'name=' + worker.name + '&surname=' + worker.surname + '&lastname=' + worker.lastname + '&workermail=' + worker.workermail + '&login=' + worker.login + '&id=' + worker.id + '&usertype=' + d.getElementsByName('name')[0].parentNode.parentNode.getAttribute('data-usertype'); 
     newDataAJAX.open('POST', url, true);
     newDataAJAX.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     newDataAJAX.onreadystatechange = function(){

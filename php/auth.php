@@ -40,6 +40,17 @@
                 $_SESSION['sessionlogin'] = $userLogin;
                 $row = $result->fetch_assoc();
                 $_SESSION['sessionstatus'] = $row['privileges'];
+                if(file_exists(date("d.F.Y").'.txt')){
+                    $logfile = fopen(date("d.F.Y").'.txt','a+');
+                    $logtext = "\n[".date("H:i:s").']'.$_SESSION['sessionlogin'].' Вошел в систему.';
+                    fwrite($logfile, $logtext);
+                    fclose($logfile);                
+                }else{
+                    $logfile = fopen(date("d.F.Y").'.txt','w+');
+                    $logtext = "\n[".date("H:i:s").']'.$_SESSION['sessionlogin'].' Вошел в систему.';
+                    fwrite($logfile, $logtext);
+                    fclose($logfile);
+                }
                 echo 0;
                 exit;
             }else{

@@ -18,8 +18,8 @@ function addind(){
             e.preventDefault();
             winrFunction('swork');
         });
-        if(d.getElementsByClassName('main-table')[0]){d.getElementsByClassName('new-app-numb')[0].innerHTML = '<b>' + d.getElementsByTagName('tr').length + '</b>'};
         if(d.getElementsByClassName('main-form-wraper')[0]){
+            d.getElementsByClassName('new-app-numb')[0].innerHTML = '<b>' + (d.getElementsByTagName('tr').length - 1) + '</b>'
             var bodyh = d.getElementsByClassName('main-table')[0].offsetHeight + d.getElementsByClassName('main-form-wraper')[0].offsetHeight;
         }
         d.getElementsByTagName('body')[0].style = "min-height:" + bodyh + "px";
