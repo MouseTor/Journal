@@ -10,6 +10,14 @@ function addind(){
     }
     if(pageId == 'main'){
         outputWorkStatus();
+        d.getElementById('account-managment').addEventListener('click', function(e){
+            e.preventDefault();
+            winrFunction('gwork');
+        });
+        d.getElementById('add-new-account').addEventListener('click', function(e){
+            e.preventDefault();
+            winrFunction('swork');
+        });
         if(d.getElementsByClassName('main-table')[0]){d.getElementsByClassName('new-app-numb')[0].innerHTML = '<b>' + d.getElementsByTagName('tr').length + '</b>'};
         if(d.getElementsByClassName('main-form-wraper')[0]){
             var bodyh = d.getElementsByClassName('main-table')[0].offsetHeight + d.getElementsByClassName('main-form-wraper')[0].offsetHeight;

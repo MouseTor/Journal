@@ -1,5 +1,6 @@
 <?php
 /*Внесение изменений в запись заявки в базе данных*/
+session_start();
     header('content-type: text/html; charset=utf-8');
     require "dbdata.php";
     $appid = trim($_POST['appid']);
@@ -17,6 +18,12 @@
     $query = "update app set cost=".$cost.", descr ='".$descr."' where appid=".$appid;
     $result = $dbconnect->query($query);
     if($result){
+        if(file_exists(date("d.F.Y").'.txt')){
+            $logfile = fopen(date("d.F.Y").'.txt','a+');
+            $logtext = "\n[".date("H:i:s").']'.$_SESSION['sessionlogin'].' Редактировал данные заявки № '.$appid;
+            fwrite($logfile, $logtext);
+            fclose($logfile);                
+        }
         echo 1;
         exit;
     }else{

@@ -85,7 +85,7 @@
                         <p><input type='submit' value='Только невыполненные' name='appfilter-butt'></p>
                     </div>
                     <div class='form-block'>
-                        <p><a href='../about.html'>О программе</a>&nbsp<a href='#' id='winr'>Выполнить</a></p>
+                        <p><a href='../about.html'>О программе</a>&nbsp<a href='#' id='winr'>Меню</a></p>
                         <p>Описание</p>
                         <textarea name='appDescr' cols='27' rows='4' tabindex='8' maxlength = '124'></textarea> 
                         <p><input type='submit' value='Выйти из системы' id='end-programm'></p>                   
@@ -149,7 +149,8 @@
     </div>
     <div class="winr-wraper">
     
-        <input type="text" name="winr-input" />
+        <p><a href="#" id="account-managment">Управление учетными записями</a></p>
+        <p><a href="#" id="add-new-account">Добавление учетной записи</a></p>
 
     </div>
     <div class="worker-window-wraper">
@@ -171,6 +172,7 @@
                     </tr>
                 </table>
                 <input type="submit" name="worker-data-redact" value="Отправить">
+                <div class="redactChecker" data-check = '0'></div>
             </div>
         
         </div>

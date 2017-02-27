@@ -152,7 +152,7 @@ tr:hover{
     background-color: rgba(0,0,0, 0.1);
 }
 /*tr:first-child{
-    /*display: block;*/
+    display: block;
     position: fixed;
     top: 0;
     width: 100%;
@@ -166,7 +166,6 @@ h3{
 .shablon{
     width: 50%;
     float: left;
-    margin-top: 12px;
 }
 
 .client-shablon{
@@ -241,11 +240,10 @@ select, input[type=date]{
     position: fixed;
     top: 40%;
     left: 35%;
-    height: 75px;
     background-color: #fff;
     text-align: center;
-    line-height: 75px;
-    padding: 0px 35px;
+    padding: 30px 35px;
+    border-radius: 7px;
 }
 
 .worker-window-wraper{
@@ -258,7 +256,7 @@ select, input[type=date]{
 }
 
 .worker-window-table-wraper{
-    width: 55%;
+    width: 60%;
     height: auto;
     background-color: white;
     margin-left: auto;

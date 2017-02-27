@@ -58,6 +58,12 @@
                             $message = "Вам предлагается заявка в городе ".$clientCity.". \n\rОписание заявки: ".$appDescr.". \n\rДля получения подробной информации перейдите по ссылке: \n\rhttp://webbranch.ru/journal/php/workstatus.php?mailaddress=".$mailaddress[$i]['workermail']."&appid=".$appmess."\n\rОбратите внимание! Переходя по ссылке вы принимаете заявку и закрываете другим монтажникам доступ к подробной информации о клиенте! Не переходите по ссылке если не уверены в возможности выполнения Вами данной заявки!";
                             $send = mail($mailaddress[$i]['workermail'], $subject, $message);
                         }
+                        if(file_exists(date("d.F.Y").'.txt')){
+                            $logfile = fopen(date("d.F.Y").'.txt','a+');
+                            $logtext = "\n[".date("H:i:s").']'.$_SESSION['sessionlogin'].' Добавил заявку № '.$appmess;
+                            fwrite($logfile, $logtext);
+                            fclose($logfile);
+                            }
                 }
                 exit;
             }else{
