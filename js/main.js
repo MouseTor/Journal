@@ -462,7 +462,7 @@ function winrFunction(tab){
                         }else{
                             var tableinner = '';
                             for(i = 0; i < request.length; i++){
-                                tableinner += '<tr data-trid="' + (request[i]['workerid'] || request[i]['cashierid']) +'" data-usertype="'+ request[i]['usertype'] +'"><td data-tdname="surname">' + request[i]['surname'] + '</td><td data-tdname="name">' + request[i]['name'] + '</td><td data-tdname="lastname">' + request[i]['lastname'] + '</td><td data-tdname="workermail">' + (request[i]['workermail'] || request[i]['usertype']) + '</td><td data-tdname="login">' + request[i]['login'] + '</td></tr>';   
+                                tableinner += '<tr data-trid="' + (request[i]['workerid'] || request[i]['cashierid']) +'" data-usertype="'+ request[i]['usertype'] +'"><td>' + request[i]['usertype'].substring(0,1) + '</td><td data-tdname="surname">' + request[i]['surname'] + '</td><td data-tdname="name">' + request[i]['name'] + '</td><td data-tdname="lastname">' + request[i]['lastname'] + '</td><td data-tdname="workermail">' + (request[i]['workermail'] || 'Не указан') + '</td><td data-tdname="login">' + request[i]['login'] + '</td></tr>';   
                             }
                             table.innerHTML += tableinner;
                             var tr = table.getElementsByTagName('tr');
@@ -480,6 +480,8 @@ function winrFunction(tab){
             d.getElementsByClassName('more-info-panel-close')[1].addEventListener('click', closeWorkerPanel);
             d.addEventListener('keyup', closeWorkerPanelClick);
             d.getElementsByName('worker-data-redact')[0].addEventListener('click', selectNewWorker);
+            d.getElementsByClassName('worker-window-table-wraper')[0].insertBefore(d.createElement('p'), d.getElementsByName('worker-data-redact')[0]).appendChild(d.createElement('select')).setAttribute('id', 'usertype');
+            d.getElementById('usertype').innerHTML = '<option value="worker">Монтажник</option><option value="cashier">Кассир</option>'
             table.innerHTML = '<tr><td>Фамилия</td><td>Имя</td><td>Отчество</td><td>Имя пользователя</td><td>Пароль</td><td>E-mail</td></tr><tr><td><input name="surname" type="text"></td><td><input name="name" type="text"></td><td><input name="lastname" type="text"></td><td><input name="login" type="text"></td><td><input name="password" type="text"></td><td><input name="mail" type="text"></td></tr>'
         }
         console.log(tab);
@@ -488,7 +490,7 @@ function winrFunction(tab){
 
 function closeWorkerPanelClick(e){
     if(e.keyCode == 27){
-        d.getElementsByClassName('worker-window-table')[0].innerHTML = '<tr><td>Фамилия</td><td>Имя</td><td>Отчество</td><td>E-mail адрес</td><td>Имя пользователя</td></tr>';
+        d.getElementsByClassName('worker-window-table')[0].innerHTML = '<tr><td>Тип</td><td>Фамилия</td><td>Имя</td><td>Отчество</td><td>E-mail адрес</td><td>Имя пользователя</td></tr>';
         d.getElementsByClassName('worker-window-wraper')[0].style.display = 'none';
         d.removeEventListener('keyup', closeWorkerPanelClick);
         d.getElementsByName('worker-data-redact')[0].removeEventListener('click', setWorkerData);
@@ -497,7 +499,7 @@ function closeWorkerPanelClick(e){
 }
 
 function closeWorkerPanel(){
-    d.getElementsByClassName('worker-window-table')[0].innerHTML = '<tr><td>Фамилия</td><td>Имя</td><td>Отчество</td><td>E-mail адрес</td><td>Имя пользователя</td></tr>';
+    d.getElementsByClassName('worker-window-table')[0].innerHTML = '<tr><td>Тип</td><td>Фамилия</td><td>Имя</td><td>Отчество</td><td>E-mail адрес</td><td>Имя пользователя</td></tr>';
     d.getElementsByClassName('worker-window-wraper')[0].style.display = 'none';
     d.getElementsByClassName('more-info-panel-close')[1].removeEventListener('click', closeWorkerPanel);
     d.getElementsByName('worker-data-redact')[0].removeEventListener('click', setWorkerData);
@@ -506,10 +508,10 @@ function closeWorkerPanel(){
 
 function redactworker(){
     if(d.getElementsByClassName('redactChecker')[0].getAttribute('data-check') == 1){
-        return;
+        return 0;
     }
     var td = this.getElementsByTagName('td');
-    for(i = 0; i < td.length; i++){
+    for(i = 1; i < td.length; i++){
         td[i].innerHTML = '<input type="text" name="' + td[i].getAttribute('data-tdname') + '" value="' + td[i].innerHTML + '">';
     }
     d.getElementsByClassName('redactChecker')[0].setAttribute('data-check', '1');
@@ -524,7 +526,7 @@ function setWorkerData(e){
         lastname: d.getElementsByName('lastname')[0].value,
         login: d.getElementsByName('login')[0].value,
         workermail: d.getElementsByName('workermail')[0].value,
-        id: d.getElementsByName('name')[0].parentNode.parentNode.getAttribute('data-trid')
+        id: d.getElementsByName('name')[0].parentNode.parentNode.getAttribute('data-trid'),
     }
     // for(key in worker){
     //     if(worker[key] === 'undefined'){
@@ -555,10 +557,11 @@ function selectNewWorker(e){
         lastname: d.getElementsByName('lastname')[0].value,
         login: d.getElementsByName('login')[0].value,
         workermail: d.getElementsByName('mail')[0].value,
-        password: d.getElementsByName('password')[0].value
+        password: d.getElementsByName('password')[0].value,
+        usertype: d.getElementById('usertype').value
     }
     var url = '../php/selectNewWorker.php';
-    var data = 'name=' + worker.name + '&surname=' + worker.surname + '&lastname=' + worker.lastname + '&login=' + worker.login + '&password=' + worker.password + '&mail=' + worker.workermail;
+    var data = 'name=' + worker.name + '&surname=' + worker.surname + '&lastname=' + worker.lastname + '&login=' + worker.login + '&password=' + worker.password + '&mail=' + worker.workermail + '&usertype=' + worker.usertype;
     var selectNWAJAX = getXHR();
     selectNWAJAX.open('POST', url, true);
     selectNWAJAX.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');

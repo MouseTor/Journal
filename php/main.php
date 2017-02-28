@@ -57,7 +57,7 @@
         if($_SESSION['sessionstatus']){
             $insert_form = "
             <div class='main-form-wraper' data-status='show'>
-                <form>
+                <form class='main-form'>
                     <div class='form-block'>
                         <p id='hide-form-button' data-login-session='".$_SESSION['sessionlogin']."'>▼ </p>
                         <p>ФИО</p>
@@ -160,10 +160,11 @@
             <div class="worker-window-table-wraper">
                 <div class="more-info-panel-close-wraper"><p class="more-info-panel-close">Закрыть</p></div>
         
-                <h3>Администрирование учетных записей монтажников</h3>
+                <h3>Администрирование учетных записей</h3>
             
                 <table class="worker-window-table">
                     <tr>
+                        <td>Тип</td>
                         <td>Фамилия</td>
                         <td>Имя</td>
                         <td>Отчество</td>
