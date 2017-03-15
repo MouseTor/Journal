@@ -285,7 +285,7 @@ select, input[type=date]{
 }
 
 .worker-window-table-wraper input[type=text]{
-    width: 125px;
+    width: 110px;
 }
 @media screen and (min-width: 320px) and (max-width: 370px){
     *{
@@ -326,5 +326,8 @@ select, input[type=date]{
     }
     *{
         font-size: 16px;
+    }
+    input[type=text], input[type=password]{
+        font-size: 13px;
     }
 }

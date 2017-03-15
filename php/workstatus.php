@@ -4,12 +4,6 @@ header('Content-type: text/html; charset=utf-8');
 require "dbdata.php";
     $appid = $_GET['appid'];
     $mailaddress = $_GET['mailaddress'];
-
-   @ $dbconnect = new mysqli($dbData->host, $dbData->login, $dbData->password, $dbData->database);
-    if(mysqli_connect_errno()){
-        echo "Ошибка подключения к базе данных";
-    exit;}
-
     $query = 'select workstat from app where appid ='.$appid;
     $result = $dbconnect->query($query);
     if($result){

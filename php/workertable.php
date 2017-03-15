@@ -8,11 +8,6 @@
         echo json_encode('error');
         exit;
     }
-
-    @ $dbconnect = new mysqli($dbData->host, $dbData->login, $dbData->password, $dbData->database);
-    if(mysqli_connect_errno()){
-        echo "Ошибка подключения к базе данных";
-        exit;}
     $query = 'select workerid, name, surname, lastname, login, workermail from workers';
     $result = $dbconnect->query($query);
     if($result){

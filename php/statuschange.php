@@ -18,11 +18,6 @@ session_start();
         echo 'Произошла ошибка ввода. Проверьте данные и повторите попытку';
         exit;
     }
-    @ $dbconnect = new mysqli($dbData->host, $dbData->login, $dbData->password, $dbData->database);
-
-    if(mysqli_connect_errno()){
-        echo "<p class='no-connect-db'>Не удалось подлючиться к базе данных. Повторите попытку позже.</p>";
-    }
     $query = "update app set workerid = (select workerid from workers where surname = '".$worker."'), datereceipt= now(), status=".$status." where appid=".$appid;
     $result = $dbconnect->query($query);
     if($result){

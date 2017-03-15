@@ -492,6 +492,7 @@ function closeWorkerPanelClick(e){
     if(e.keyCode == 27){
         d.getElementsByClassName('worker-window-table')[0].innerHTML = '<tr><td>Тип</td><td>Фамилия</td><td>Имя</td><td>Отчество</td><td>E-mail адрес</td><td>Имя пользователя</td></tr>';
         d.getElementsByClassName('worker-window-wraper')[0].style.display = 'none';
+        d.getElementById('usertype').parentNode.remove();
         d.removeEventListener('keyup', closeWorkerPanelClick);
         d.getElementsByName('worker-data-redact')[0].removeEventListener('click', setWorkerData);
         d.getElementsByClassName('redactChecker')[0].setAttribute('data-check', '0');
@@ -501,6 +502,7 @@ function closeWorkerPanelClick(e){
 function closeWorkerPanel(){
     d.getElementsByClassName('worker-window-table')[0].innerHTML = '<tr><td>Тип</td><td>Фамилия</td><td>Имя</td><td>Отчество</td><td>E-mail адрес</td><td>Имя пользователя</td></tr>';
     d.getElementsByClassName('worker-window-wraper')[0].style.display = 'none';
+    d.getElementById('usertype').parentNode.remove();
     d.getElementsByClassName('more-info-panel-close')[1].removeEventListener('click', closeWorkerPanel);
     d.getElementsByName('worker-data-redact')[0].removeEventListener('click', setWorkerData);
     d.getElementsByClassName('redactChecker')[0].setAttribute('data-check', '0');

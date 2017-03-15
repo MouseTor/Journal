@@ -18,10 +18,6 @@
         var $login;
         var $password;
     }
-    @ $dbconnect = new mysqli($dbData->host, $dbData->login, $dbData->password, $dbData->database);
-    if(mysqli_connect_errno()){
-        echo "Ошибка подключения к базе данных";
-        exit;}
     if($usertype == 'cashier'){
         $cashier = new cashier;
         $cashier->name = addslashes(trim($_POST['name']));

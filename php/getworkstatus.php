@@ -2,13 +2,7 @@
 
 require "dbdata.php";
  @ $dbconnect = new mysqli($dbData->host, $dbData->login, $dbData->password, $dbData->database);
-if(mysqli_connect_errno()){
-    echo 'Не удалось установить соединение с базой данных. Повторите попытку позже';
-    exit;
-}
-
 $query = "select appid, workstat, status from app";
-
 $result = $dbconnect->query($query);
 $array = array();
 if($result){

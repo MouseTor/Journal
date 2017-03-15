@@ -22,10 +22,6 @@
 <body data-pgid="main">
     <?php
         $appfilter = $_GET['appfilter'];
-        @ $dbconnect = new mysqli($dbData->host, $dbData->login, $dbData->password, $dbData->database);
-        if(mysqli_connect_errno()){
-            echo "<p class='no-connect-db'>Не удалось подлючиться к базе данных. Повторите попытку позже.</p>";
-        }
         if($appfilter){
             $query = 'select * from clients, app where app.clientid = clients.clientid and app.status = 1';
             $result = $dbconnect->query($query);
@@ -85,7 +81,7 @@
                         <p><input type='submit' value='Только невыполненные' name='appfilter-butt'></p>
                     </div>
                     <div class='form-block'>
-                        <p><a href='../about.html'>О программе</a>&nbsp<a href='#' id='winr'>Меню</a></p>
+                        <p><a href='../about.html'>О программе</a>&nbsp<a href='#' id='winr'>Меню</a>&nbsp<a href='http://tvnet3.ru'>Вернуться на сайт</a></p>
                         <p>Описание</p>
                         <textarea name='appDescr' cols='27' rows='4' tabindex='8' maxlength = '124'></textarea> 
                         <p><input type='submit' value='Выйти из системы' id='end-programm'></p>                   

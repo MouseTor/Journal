@@ -8,9 +8,15 @@
     }
 
     $dbData = new dbData;
-    $dbData->host = 'mysql.hostinger.ru';
-    $dbData->login = 'u995160888_admin';
-    $dbData->password = 'fargot1423';
-    $dbData->database = 'u995160888_order';
+    $dbData->host = 'tvnet3.mysql';
+    $dbData->login = 'tvnet3_tv';
+    $dbData->password = 'zeb:7VrM';
+    $dbData->database = 'tvnet3_tvjournal';
+
+    @ $dbconnect = new mysqli($dbData->host, $dbData->login, $dbData->password, $dbData->database);
+    if(mysqli_connect_errno()){
+        echo "Ошибка подключения к базе данных";
+    exit;}
+    $dbconnect->set_charset('utf8');
  
 ?>

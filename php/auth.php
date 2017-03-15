@@ -5,11 +5,6 @@
     require "dbdata.php";
     $userLogin = addslashes(trim($_POST['userLogin']));
     $userPassword = $_POST['userPassword'];
-
-    @ $dbconnect = new mysqli($dbData->host, $dbData->login, $dbData->password, $dbData->database);
-    if(mysqli_connect_errno()){
-        echo "Ошибка подключения к базе данных";
-        exit;}
         $query = 'select * from cashiers where login = "'.$userLogin.'" and password = "'.sha1($userPassword).'"';
 
         $result = $dbconnect->query($query);

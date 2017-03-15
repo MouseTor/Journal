@@ -6,10 +6,6 @@
     $surname = trim($_POST['clientSurName']);
     $lastName = trim($_POST['clientLastName']);
     $clientid = trim($_POST['clientid']);
-    @ $dbconnect = new mysqli($dbData->host, $dbData->login, $dbData->password, $dbData->database);
-        if(mysqli_connect_errno()){
-            echo "<p class='no-connect-db'>Не удалось подлючиться к базе данных. Повторите попытку позже.</p>";
-        }
     if(!$clientid){
         $query = "select * from clients where name like '".$name."%' and surname like '".$surname."%' and lastname like '".$lastName."%'";
         $result = $dbconnect->query($query);

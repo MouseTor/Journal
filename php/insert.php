@@ -20,10 +20,6 @@
         echo "Все поля являются обязательными к заполнению!";
         exit;
     }
-    @ $dbconnect = new mysqli($dbData->host, $dbData->login, $dbData->password, $dbData->database);
-        if(mysqli_connect_errno()){
-            echo "Ошибка подключения к базе данных";
-            exit;}
         $query = "select workermail from workers";
         $result = $dbconnect->query($query);
         if($result){
