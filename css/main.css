@@ -41,17 +41,18 @@ input[type=text], input[type=password]{
     border: 1px solid black;
     padding: 5px 0;
     border-radius: 5px;
-    background-color: lightgray;
+    /*background-color: lightgray;*/
 }
 
 input[type=submit]{
-    padding: 10px 35px;
+    padding: 5px 35px;
     background-color: #31a357;
     border-radius: 5px;
     color: white;
     font-size: 15pt;
-    margin-top: 10px;
+    /* margin-top: 10px; */
     transition: .3s;
+    width: 225px;
 }
 input[type=submit]:hover{
     transition: .3s;
@@ -103,6 +104,7 @@ td{
 .form-block{
     width: auto;
     float:left;
+    /*margin-top: 40px;*/
 }
 
 textarea{
@@ -110,8 +112,14 @@ textarea{
     border: 1px solid black;
     padding: 5px 7px;
     border-radius: 5px;
-    background-color: lightgray;
+    /*background-color: lightgray;*/
     resize: none;
+}
+textarea[name=appDescr]{
+    height: 127px;
+}
+textarea[name=clientAddress]{
+    height: 90px;
 }
 
 textarea[name=redactDescr]{
@@ -216,13 +224,13 @@ h3{
 .client-info-panel-control{
     display: none;
 }
-select, input[type=date]{
-    width: 150px;
-    font-size: 12pt;
+select{
+    width: 240px;
+    font-size: 11pt;
     border: 1px solid black;
     border-radius: 5px;
     outline: none;
-    height: 32px;
+    height: 27px;
 }
 
 .status-submit-error-log{
@@ -234,8 +242,8 @@ select, input[type=date]{
     position: absolute;
     background-color: white;
     font-size: 12pt;
-    margin-top: -128px;
-    margin-left: 5px;
+    margin-top: -107px;
+    margin-left: 22px;
     border: 1px solid black;
 }
 
@@ -286,6 +294,20 @@ select, input[type=date]{
 
 .worker-window-table-wraper input[type=text]{
     width: 110px;
+}
+
+.descr_input{
+    margin-left: 0;
+    width: 233px;
+}
+.new-app-numb{
+    text-align: center;
+}
+.content{
+    width: 1420px;
+}
+input[name=delete-button]{
+    background-color: darkred;
 }
 @media screen and (min-width: 320px) and (max-width: 370px){
     *{

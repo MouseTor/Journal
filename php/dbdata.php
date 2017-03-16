@@ -8,10 +8,10 @@
     }
 
     $dbData = new dbData;
-    $dbData->host = 'tvnet3.mysql';
-    $dbData->login = 'tvnet3_tv';
-    $dbData->password = 'zeb:7VrM';
-    $dbData->database = 'tvnet3_tvjournal';
+    $dbData->host = 'localhost';
+    $dbData->login = 'root';
+    $dbData->password = '';
+    $dbData->database = 'orders_log';
 
     @ $dbconnect = new mysqli($dbData->host, $dbData->login, $dbData->password, $dbData->database);
     if(mysqli_connect_errno()){

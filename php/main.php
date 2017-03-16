@@ -53,40 +53,56 @@
         if($_SESSION['sessionstatus']){
             $insert_form = "
             <div class='main-form-wraper' data-status='show'>
+                <div class='content'>
                 <form class='main-form'>
+                <p id='hide-form-button' data-login-session='".$_SESSION['sessionlogin']."'>▼ </p><p class='new-app-numb'>1</p>
                     <div class='form-block'>
-                        <p id='hide-form-button' data-login-session='".$_SESSION['sessionlogin']."'>▼ </p>
-                        <p>ФИО</p>
-                        <input type='text' name='clientSurName' tabindex='1' maxlength = '20'>
-                        <input type='text' name='clientName' tabindex='2' maxlength ='20'>
-                        <input type='text' name='clientLastName' tabindex='3' maxlength = '20'>
-                        <p>Номер телефона</p>
-                        <b>+7</b><input type='text' name='clientPhoneNumber' tabindex='4' maxlength = 10>
-                        <p><input type='submit' value='Записать' name='insertApp' tabindex='9' id='submit-data-button' data-load-script='false'><input type='submit' value='Обновить' name='reload'></p>
-                        <p class='main-error-log'></p>
+                        
+                        <p>&nbsp&nbsp&nbsp<input type='text' name='clientSurName' tabindex='1' maxlength = '20' placeholder='Фамилия'></p>
+                        <p>&nbsp&nbsp&nbsp<input type='text' name='clientName' tabindex='2' maxlength ='20' placeholder='Имя'></p>
+                        <p>&nbsp&nbsp&nbsp<input type='text' name='clientLastName' tabindex='3' maxlength = '20' placeholder='Отчество'></p>
+                        <b>+7</b><input type='text' name='clientPhoneNumber' tabindex='4' maxlength = 10 placeholder='Номер телефона'>
                         <input type='hidden' name='oldClientId'>
                         <div class='slideUpClientName'></div>
                     </div>
                     <div class='form-block'>
-                        <p><b>Добавление записи №</b></p>
-                        <p>Населенный пункт</p>
-                        <input type='text' name='clientCity' tabindex='5' maxlength = '20'>
-                        <p>Стоимость</p>
-                        <input type='text' name='appCost' tabindex='7' maxlength = '6'>
+                        <p><input type='text' name='clientCity' tabindex='5' maxlength = '20' placeholder='Населенный пункт'>
+                        <input type='text' name='appCost' tabindex='7' maxlength = '6' placeholder='Стоимость'></p>
+                        <p><textarea name='clientAddress' cols='35' tabindex='6' maxlength = '124' placeholder='Адрес'></textarea></p>
+                        <p class='main-error-log'></p>
                     </div>
                     <div class='form-block'>
-                        <p class='new-app-numb'>1</p>
-                        <p>Адрес</p>
-                        <textarea name='clientAddress' cols='30' rows='4' tabindex='6' maxlength = '124'></textarea>
-                        <p><input type='submit' value='Только невыполненные' name='appfilter-butt'></p>
+                        <p><select id='apptype'>
+                            <option value='' disabled selected style='display:none;'>Выберите тип заявки!</option>
+                            <option>Вызов мастера</option>
+                            <option>Монтаж комплекта</option>
+                            <option>Сервисное обслуживание</option>
+                            <option>Замена оборудования</option>
+                        <select></p>
+                        <p><select id='systemType' style='display: none;'>
+                            <option value='' disabled selected style='display:none;'>Выберите тип системы!</option>
+                            <option>Видеонаблюдение</option>
+                            <option>Триколор ТВ</option>
+                            <option>НТВ+</option>
+                            <option>Эфирное телевидение</option>
+                            <option>Другое</option>
+                        <select></p>
+                        <p><input type='text' name='appNameModel' placeholder='Модель оборудования' class='descr_input' style='display: none;'></p>
+                        <p><input type='text' name='appSerialNumber' placeholder='Серийный номер оборудования' class='descr_input' style='display: none;'></p>
+                        <p><input type='text' name='appIdNumber' placeholder='ID номер оборудования' class='descr_input' style='display: none;'></p>
+                    </div>
+                    <div class='form-block'>
+                        <p><textarea name='appDescr' cols='27' tabindex='8' maxlength = '124' placeholder='Описание заявки'></textarea></p>
                     </div>
                     <div class='form-block'>
                         <p><a href='../about.html'>О программе</a>&nbsp<a href='#' id='winr'>Меню</a>&nbsp<a href='http://tvnet3.ru'>Вернуться на сайт</a></p>
-                        <p>Описание</p>
-                        <textarea name='appDescr' cols='27' rows='4' tabindex='8' maxlength = '124'></textarea> 
-                        <p><input type='submit' value='Выйти из системы' id='end-programm'></p>                   
+                        <p><input type='submit' value='Записать' name='insertApp' tabindex='9' id='submit-data-button' data-load-script='false'></p>
+                        <p><input type='submit' value='Обновить' name='reload'></p>
+                        <p><input type='submit' value='Невыполненные' name='appfilter-butt'></p>
+                        <p><input type='submit' value='Выход' id='end-programm'></p>                   
                     </div>
                 </form>
+                </div>
             </div>";
             echo $insert_form;
         }else{
@@ -147,6 +163,7 @@
     
         <p><a href="#" id="account-managment">Управление учетными записями</a></p>
         <p><a href="#" id="add-new-account">Добавление учетной записи</a></p>
+        <p><a href="#" id="delet-account">Удаление учетных записей</a></p>
 
     </div>
     <div class="worker-window-wraper">

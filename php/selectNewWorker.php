@@ -2,6 +2,11 @@
     session_start();
     header('Content-type: text/html; charset=utf-8');
     require "dbdata.php";
+
+    if($_SESSION['sessionstatus'] < 2){
+        echo json_encode('error');
+        exit;
+    }
     $usertype = addslashes(trim($_POST['usertype']));
     class worker{
         var $name;

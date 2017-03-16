@@ -18,9 +18,14 @@ function addind(){
             e.preventDefault();
             winrFunction('swork');
         });
+        d.getElementById('delet-account').addEventListener('click', function(e){
+            e.preventDefault();
+            winrFunction('dwork');
+        });
         if(d.getElementsByClassName('main-form-wraper')[0]){
-            d.getElementsByClassName('new-app-numb')[0].innerHTML = '<b>' + (d.getElementsByTagName('tr').length - 1) + '</b>'
+            d.getElementsByClassName('new-app-numb')[0].innerHTML = '<b> Добавление записи №' + (d.getElementsByTagName('tr').length - 1) + '</b>'
             var bodyh = d.getElementsByClassName('main-table')[0].offsetHeight + d.getElementsByClassName('main-form-wraper')[0].offsetHeight;
+            d.getElementById('apptype').addEventListener('change', appTypeSelect);
         }
         d.getElementsByTagName('body')[0].style = "min-height:" + bodyh + "px";
         var tr = d.getElementsByTagName('tr');

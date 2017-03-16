@@ -36,13 +36,26 @@ function insertApp(e){
         };
         var newapp = {
             cost: d.getElementsByName('appCost')[0].value, 
-            description: d.getElementsByName('appDescr')[0].value,
-        }
+            description: d.getElementById('apptype').value + ' ',
+    }
+    if(d.getElementById('systemType').value != ''){
+        newapp.description += d.getElementById('systemType').value + ' ';
+    }
+    if(d.getElementsByName('appNameModel')[0].value != ''){
+        newapp.description += ' Модель оборудования: ' + d.getElementsByName('appNameModel')[0].value;
+    }
+    if(d.getElementsByName('appSerialNumber')[0].value != ''){
+        newapp.description += ' Серийнй номер оборудования: '+ d.getElementsByName('appSerialNumber')[0].value;
+    }
+    if(d.getElementsByName('appIdNumber')[0].value != ''){
+        newapp.description += ' ID номер оборудования: ' + d.getElementsByName('appIdNumber')[0].value;
+    }
+    newapp.description += ' Описание заявки: '+ d.getElementsByName('appDescr')[0].value;
         var oldClientId = d.getElementsByName('oldClientId')[0].value;
 
 
-        if(!client.name || !client.surname || !client.lastname || !client.city || !client.address || !client.phonenumber || !newapp.cost || !newapp.description){
-            d.getElementsByClassName('main-error-log')[0].innerHTML = 'Все поля являются обязательными к заполнению!';
+        if(!client.name || !client.surname || !client.lastname || !client.city || !client.address || !client.phonenumber || !newapp.cost || d.getElementById('apptype').value == '' || d.getElementsByName('appDescr')[0].value == ''){
+            d.getElementsByClassName('main-error-log')[0].innerHTML = 'Необходимо заполнить все поля!';
         }else{
             d.getElementsByClassName('main-error-log')[0].innerHTML = '';
             var url = "../php/insert.php";
@@ -483,6 +496,40 @@ function winrFunction(tab){
             d.getElementsByClassName('worker-window-table-wraper')[0].insertBefore(d.createElement('p'), d.getElementsByName('worker-data-redact')[0]).appendChild(d.createElement('select')).setAttribute('id', 'usertype');
             d.getElementById('usertype').innerHTML = '<option value="worker">Монтажник</option><option value="cashier">Кассир</option>'
             table.innerHTML = '<tr><td>Фамилия</td><td>Имя</td><td>Отчество</td><td>Имя пользователя</td><td>Пароль</td><td>E-mail</td></tr><tr><td><input name="surname" type="text"></td><td><input name="name" type="text"></td><td><input name="lastname" type="text"></td><td><input name="login" type="text"></td><td><input name="password" type="text"></td><td><input name="mail" type="text"></td></tr>'
+        }else if(tab == 'dwork'){
+            d.getElementsByClassName('worker-window-wraper')[0].style.display = 'block';
+            d.getElementsByClassName('more-info-panel-close')[1].addEventListener('click', closeWorkerPanel);
+            d.addEventListener('keyup', closeWorkerPanelClick);
+            table.innerHTML = '<tr><td>Фамилия</td><td>Имя</td><td>Отчество</td><td>Имя пользователя</td><td></td></tr>'
+            d.getElementsByName('worker-data-redact')[0].style.display='none';
+            var workerTableAJAX = new getXHR();
+            var url = '../php/workertable.php'
+            workerTableAJAX.open('POST', url, true);
+            workerTableAJAX.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            workerTableAJAX.onreadystatechange = function(){
+                if(this.readyState == 4 && this.status == 200){
+                    var response = workerTableAJAX.responseText;
+                    if(response){
+                        var request = JSON.parse(response);
+                        console.log(request);
+                        if(request == 'error'){
+                            alert('У Вас недостаточно прав для выполнения этой операции. Обратитесь к администратору за дополнительной информацией.');
+                                closeWorkerPanel();
+                        }else{
+                            var tableinner = '';
+                            for(i = 0; i < request.length; i++){
+                                tableinner += '<tr data-trid="' + (request[i]['workerid'] || request[i]['cashierid']) +'" data-usertype="'+ request[i]['usertype'] +'"><td data-tdname="surname">' + request[i]['surname'] + '</td><td data-tdname="name">' + request[i]['name'] + '</td><td data-tdname="lastname">' + request[i]['lastname'] + '</td><td data-tdname="login">' + request[i]['login'] + '</td><td><input type="submit" value="Удалить" name="delete-button" data-idAccount="'+ request[i]['login'] +'"></td></tr>';   
+                            }
+                            table.innerHTML += tableinner;
+                            var tr = table.getElementsByTagName('tr');
+                            for(i = 0; i < d.getElementsByName('delete-button').length; i++){
+                                d.getElementsByName('delete-button')[i].addEventListener('click', deleteAccount);
+                            }
+                        }
+                    }
+                }
+            }
+            workerTableAJAX.send();
         }
         console.log(tab);
         d.getElementsByClassName('winr-wraper')[0].style.display = 'none'; 
@@ -492,9 +539,12 @@ function closeWorkerPanelClick(e){
     if(e.keyCode == 27){
         d.getElementsByClassName('worker-window-table')[0].innerHTML = '<tr><td>Тип</td><td>Фамилия</td><td>Имя</td><td>Отчество</td><td>E-mail адрес</td><td>Имя пользователя</td></tr>';
         d.getElementsByClassName('worker-window-wraper')[0].style.display = 'none';
-        d.getElementById('usertype').parentNode.remove();
+        if(d.getElementById('usertype')){
+            d.getElementById('usertype').parentNode.remove();
+        }
         d.removeEventListener('keyup', closeWorkerPanelClick);
         d.getElementsByName('worker-data-redact')[0].removeEventListener('click', setWorkerData);
+        d.getElementsByName('worker-data-redact')[0].style.display='block';
         d.getElementsByClassName('redactChecker')[0].setAttribute('data-check', '0');
     }
 }
@@ -502,9 +552,12 @@ function closeWorkerPanelClick(e){
 function closeWorkerPanel(){
     d.getElementsByClassName('worker-window-table')[0].innerHTML = '<tr><td>Тип</td><td>Фамилия</td><td>Имя</td><td>Отчество</td><td>E-mail адрес</td><td>Имя пользователя</td></tr>';
     d.getElementsByClassName('worker-window-wraper')[0].style.display = 'none';
-    d.getElementById('usertype').parentNode.remove();
+    if(d.getElementById('usertype')){
+        d.getElementById('usertype').parentNode.remove();
+    }
     d.getElementsByClassName('more-info-panel-close')[1].removeEventListener('click', closeWorkerPanel);
     d.getElementsByName('worker-data-redact')[0].removeEventListener('click', setWorkerData);
+    d.getElementsByName('worker-data-redact')[0].style.display='block';
     d.getElementsByClassName('redactChecker')[0].setAttribute('data-check', '0');
 }
 
@@ -570,6 +623,11 @@ function selectNewWorker(e){
     selectNWAJAX.onreadystatechange = function(){
         if(this.readyState == 4 && this.status == 200){
             var response = this.responseText;
+            var request = JSON.parse(this.responseText);
+            if(request == 'error'){
+                            alert('У Вас недостаточно прав для выполнения этой операции. Обратитесь к администратору за дополнительной информацией.');
+                                closeWorkerPanel();
+                        }
             if(response == 1){
                 location.reload();
             }else{
@@ -578,4 +636,55 @@ function selectNewWorker(e){
         }
     }
     selectNWAJAX.send(data);
+}
+
+function appTypeSelect(){
+    if(this.value == 'Вызов мастера'){
+        d.getElementsByName('appNameModel')[0].style.display = 'none';
+        d.getElementsByName('appSerialNumber')[0].style.display = 'none';
+        d.getElementsByName('appIdNumber')[0].style.display = 'none';
+        d.getElementById('systemType').style.display = 'block';
+    }
+    if(this.value == 'Монтаж комплекта'){
+        d.getElementsByName('appNameModel')[0].style.display = 'none';
+        d.getElementsByName('appSerialNumber')[0].style.display = 'none';
+        d.getElementsByName('appIdNumber')[0].style.display = 'none';
+        d.getElementById('systemType').style.display = 'block';
+    }
+    if(this.value == 'Сервисное обслуживание'){
+        d.getElementsByName('appNameModel')[0].style.display = 'block';
+        d.getElementsByName('appSerialNumber')[0].style.display = 'block';
+        d.getElementsByName('appIdNumber')[0].style.display = 'block';
+        d.getElementById('systemType').style.display = 'block';
+    }
+    if(this.value == 'Замена оборудования'){
+        d.getElementsByName('appNameModel')[0].style.display = 'block';
+        d.getElementsByName('appSerialNumber')[0].style.display = 'none';
+        d.getElementsByName('appIdNumber')[0].style.display = 'none';
+        d.getElementById('systemType').style.display = 'block';
+    }
+    console.log(this.value);
+}
+
+function deleteAccount(){
+    var login = this.getAttribute('data-idAccount');
+    if(confirm('Вы уверены? Данное действие нельзя будет отменить! Учетная запись будет утеряна!')){
+        var deleteAJAX = getXHR();
+        var url = '../php/deleteAccount.php';
+        var data = 'login='+ login;
+        deleteAJAX.open('POST', url, true);
+        deleteAJAX.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        deleteAJAX.onreadystatechange = function(){
+            if(this.readyState == 4 && this.status == 200){
+                var response = this.responseText;
+                if(response == 1){
+                    alert('Запись успешно удалена. Страница будет перезагружена!');
+                    location.reload();
+                }else{
+                    alert(response);
+                }
+            }
+        }
+        deleteAJAX.send(data);
+    }
 }
