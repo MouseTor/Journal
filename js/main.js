@@ -111,22 +111,23 @@ function rowListener(){
         if(moreIAJAX.readyState == 4 && moreIAJAX.status == 200){
             if(moreIAJAX.responseText){
                 var data = JSON.parse(moreIAJAX.responseText);
+                console.log(data);
                 var status;
-                if(data[0] == 1){
+                if(data[0][0] == 1){
                     status = "Не выполнена";
                     d.getElementsByName('more-info-status')[0].style.display= "inline";
-                }else if(data[0] == 2){
+                }else if(data[0][0] == 2){
                     status = "Выполнена";
                      d.getElementsByName('more-info-status')[0].style.display= "none";
                 }else{
                     status = "Отменена";
                     d.getElementsByName('more-info-status')[0].style.display= "none";
                 }
-                var answer = "<p class='redactName'>" + data[6] + " " + data[5] + " " + data[7] + "</p><p> 8 " + data[8] + "</p><p>" + data[9] + "</p><p class='redactAddress'>" + data[10] + "</p><p class='redactDescr'>" + data[1] + "</p><p class='redactCost'>" + data[2] + "</p><p>" + data[3] + "</p><p>" + data[12] + " " + data[11] + " " + data[13] + "</p><p class='status-val'>" + status + "</p>";
-                if(data[0] == 2 ){
-                    answer += "<p>Дата выполнения: " + data[4] + "</p><p>Выполнил заявку: " + data[15] + " " + data[14] + "</p>"; 
-                }else if(data[0] == 3){
-                    answer += "<p>Дата закрытия: " + data[4] + "</p>";
+                var answer = "<p class='redactName'>" + data[0][6] + " " + data[0][5] + " " + data[0][7] + "</p><p> 8 " + data[0][8] + "</p><p>" + data[0][9] + "</p><p class='redactAddress'>" + data[0][10] + "</p><p class='redactDescr'>" + data[0][1] + "</p><p class='redactCost'>" + data[0][2] + "</p><p>" + data[0][3] + "</p><p>" + data[0][12] + " " + data[0][11] + " " + data[0][13] + "</p><p class='status-val'>" + status + "</p>";
+                if(data[0][0] == 2 ){
+                    answer += "<p>Дата выполнения: " + data[0][4] + "</p><p>Выполнил заявку: " + data[1][0] + " " + data[1][1] + "</p>"; 
+                }else if(data[0][0] == 3){
+                    answer += "<p>Дата закрытия: " + data[0][4] + "</p>";
                 }
                 d.getElementsByClassName('more-info-data')[0].innerHTML = answer;
                 moreIPW.style.display = 'block';

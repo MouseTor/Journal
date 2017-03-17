@@ -42,7 +42,7 @@ function addind(){
         if(d.getElementsByClassName('main-form-wraper')[0]){
             d.getElementsByName('reload')[0].addEventListener('click', function(e){e.preventDefault(); location.reload();})
         d.getElementsByName('appDescr')[0].addEventListener('keyup', slashesRegExp);
-        d.getElementsByName('appfilter-butt')[0].addEventListener('click', function(e){e.preventDefault(); document.location.href = "http://tvnet3.ru/tv-journal/php/main.php?appfilter=1";});
+        d.getElementsByName('appfilter-butt')[0].addEventListener('click', function(e){e.preventDefault(); document.location.href = d.location.href + "?appfilter=1";});
         d.getElementById('winr').addEventListener('click', perform);
         // d.getElementsByName('search-filter')[0].addEventListener('click', search);
         }
@@ -68,7 +68,7 @@ function addind(){
         d.getElementsByName('reload')[0].addEventListener('click', function(e){e.preventDefault(); location.reload();})
         d.getElementsByName('appDescr')[0].addEventListener('keyup', slashesRegExp);
         d.getElementsByName('appfilter-butt')[0].value= "Показать все";
-        d.getElementsByName('appfilter-butt')[0].addEventListener('click', function(e){e.preventDefault(); document.location.href = "http://tvnet3.ru/tv-journal/php/main.php";});
+        d.getElementsByName('appfilter-butt')[0].addEventListener('click', function(e){e.preventDefault(); document.location.href = d.location.href.replace("?appfilter=1",'');});
         }
     }
 }

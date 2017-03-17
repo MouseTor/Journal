@@ -55,9 +55,8 @@
             <div class='main-form-wraper' data-status='show'>
                 <div class='content'>
                 <form class='main-form'>
-                <p id='hide-form-button' data-login-session='".$_SESSION['sessionlogin']."'>▼ </p><p class='new-app-numb'>1</p>
+                <p id='hide-form-button' data-login-session='".$_SESSION['sessionlogin']."'>▼ </p><p class='new-app-numb' style='margin-top: -28px;'>1</p><p class='right' style='margin-top: -28px;'><a href='../about.html'>О программе</a>&nbsp<a href='#' id='winr'>Меню</a>&nbsp<a href='http://tvnet3.ru'>Вернуться на сайт</a></p>
                     <div class='form-block'>
-                        
                         <p>&nbsp&nbsp&nbsp<input type='text' name='clientSurName' tabindex='1' maxlength = '20' placeholder='Фамилия'></p>
                         <p>&nbsp&nbsp&nbsp<input type='text' name='clientName' tabindex='2' maxlength ='20' placeholder='Имя'></p>
                         <p>&nbsp&nbsp&nbsp<input type='text' name='clientLastName' tabindex='3' maxlength = '20' placeholder='Отчество'></p>
@@ -95,7 +94,6 @@
                         <p><textarea name='appDescr' cols='27' tabindex='8' maxlength = '124' placeholder='Описание заявки'></textarea></p>
                     </div>
                     <div class='form-block'>
-                        <p><a href='../about.html'>О программе</a>&nbsp<a href='#' id='winr'>Меню</a>&nbsp<a href='http://tvnet3.ru'>Вернуться на сайт</a></p>
                         <p><input type='submit' value='Записать' name='insertApp' tabindex='9' id='submit-data-button' data-load-script='false'></p>
                         <p><input type='submit' value='Обновить' name='reload'></p>
                         <p><input type='submit' value='Невыполненные' name='appfilter-butt'></p>

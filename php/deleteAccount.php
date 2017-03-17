@@ -8,14 +8,10 @@
     $result = $dbconnect->query($query);
     $rows = $result->num_rows;
     if($rows){
-        $row = $result->fetch_assoc();
-        $auto_increment = $row['cashierid'];
         $query = 'delete from cashiers where login = "'.$login.'"';
         $result = $dbconnect->query($query);
         $rows = $dbconnect->affected_rows;
         if($rows){
-            $query = 'alter table cashiers auto_increment = '.$auto_increment;
-            $result = $dbconnect->query($query);
             echo 1;
             exit;
         }else{
@@ -27,14 +23,10 @@
         $result = $dbconnect->query($query);
         $rows = $result->num_rows;
         if($rows){
-            $row = $result->fetch_assoc();
-            $auto_increment = $row['workerid'];
             $query = 'delete from workers where login = "'.$login.'"';
             $result = $dbconnect->query($query);
             $rows = $dbconnect->affected_rows;
             if($rows){
-                $query = 'alter table workers auto_increment = '.$auto_increment;
-                $result = $dbconnect->query($query);
                 echo 1;
                 exit;
             }else{

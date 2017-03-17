@@ -116,10 +116,10 @@ textarea{
     resize: none;
 }
 textarea[name=appDescr]{
-    height: 127px;
+    height: 121px;
 }
 textarea[name=clientAddress]{
-    height: 90px;
+    height: 84px;
 }
 
 textarea[name=redactDescr]{
@@ -308,6 +308,10 @@ select{
 }
 input[name=delete-button]{
     background-color: darkred;
+}
+input[name=more-info-client]{
+    width: auto;
+    padding: 5px 33px; 
 }
 @media screen and (min-width: 320px) and (max-width: 370px){
     *{
