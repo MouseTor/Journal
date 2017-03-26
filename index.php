@@ -9,7 +9,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Авторизация в системе MangApp</title>
+    <title>Авторизация в системе MangApp v 1.0.0</title>
     <link rel="stylesheet" href="css/main.css">
     <meta name="viewport" content="width=device-width">
     <script src="applet/addind.js"></script>

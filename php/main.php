@@ -11,7 +11,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>MangApp. Open Beta test v0.6.</title>
+    <title>MangApp v 1.0.0</title>
     <link rel="stylesheet" href="../css/main.css">
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=0">
     <script src="../applet/addind.js"></script>
@@ -55,7 +55,7 @@
             <div class='main-form-wraper' data-status='show'>
                 <div class='content'>
                 <form class='main-form'>
-                <p id='hide-form-button' data-login-session='".$_SESSION['sessionlogin']."'>▼ </p><p class='new-app-numb' style='margin-top: -28px;'>1</p><p class='right' style='margin-top: -28px;'><a href='../about.html'>О программе</a>&nbsp<a href='#' id='winr'>Меню</a>&nbsp<a href='http://tvnet3.ru'>Вернуться на сайт</a></p>
+                <p id='hide-form-button' data-login-session='".$_SESSION['sessionlogin']."'>▼ </p><p class='new-app-numb' style='margin-top: -28px;'>1</p><p class='right ' style='margin-top: -28px; margin-right: 95px;'><a href='../about.html'>О программе</a>&nbsp<a href='#' id='winr'>Меню</a></p>
                     <div class='form-block'>
                         <p>&nbsp&nbsp&nbsp<input type='text' name='clientSurName' tabindex='1' maxlength = '20' placeholder='Фамилия'></p>
                         <p>&nbsp&nbsp&nbsp<input type='text' name='clientName' tabindex='2' maxlength ='20' placeholder='Имя'></p>
